@@ -1,5 +1,13 @@
 <?php
-// 以下不需要配置
+
+if (MANY_USERS){
+    if(!isset($_COOKIE['username']) || !isset($config['USER_CONFIG'][$_COOKIE['username']])){
+        return ;
+    }
+
+    $config['SERVERS'] = $config['USER_CONFIG'][$_COOKIE['username']];
+}
+
 // 根据cookie判断使用的环境
 if(isset($_GET['server']) && isset($config['SERVERS'][$_GET['server']])){
     setcookie("server", $_GET['server'], time() + 31536000);
@@ -24,6 +32,10 @@ mkdir(LOCAL_DATA_PATH, 0755, true);
 $config['SERVER_ENVS'] = $server['env'];
 $config['SERVER_NAME'] = $server['NAME'];
 $config['ENVS_NAME'] = $env['NAME'];
+
+if (isset($server["UPGRADE"])){
+    $config['UPGRADE'] = $server["UPGRADE"];
+}
 
 /**
  * GIT_BIN
