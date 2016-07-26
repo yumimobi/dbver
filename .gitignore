@@ -6,3 +6,4 @@ data/*
 dbver.iml
 config/*
 !config/.gitkeep
+!config/username.example.php
