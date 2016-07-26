@@ -4,3 +4,5 @@ config.php
 data/*
 !data/.gitkeep
 dbver.iml
+config/*
+!config/.gitkeep
