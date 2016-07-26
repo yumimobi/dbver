@@ -1,4 +1,5 @@
 <?php
+define("MANY_USERS", false);
 $config = array();
 
 /**

@@ -1,4 +1,6 @@
 <?php
+define("MANY_USERS", false);
+
 $config = array();
 
 $config['UPGRADE']['DB_HOST'] = '';
