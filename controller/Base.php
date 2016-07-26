@@ -38,12 +38,12 @@ abstract class Base
         }
 
         if (!isset($_SERVER['PHP_AUTH_USER'])) {
-            header("WWW-Authenticate:BASIC Realm=My Realm");
+            header("WWW-Authenticate:BASIC Realm=authentication");
             header("HTTP/1.0 401 Unauthorized");
             echo("请验证身份信息");
             exit;
         } else if (!isset(Config::$config["USER"][$_SERVER['PHP_AUTH_USER']]) || !is_callable(Config::$config["USER"][$_SERVER['PHP_AUTH_USER']]) || !call_user_func(Config::$config["USER"][$_SERVER['PHP_AUTH_USER']], $_SERVER['PHP_AUTH_PW'])) {
-            header("WWW-Authenticate:BASIC Realm=My Realm");
+            header("WWW-Authenticate:BASIC Realm=authentication");
             header("HTTP/1.0 401 Unauthorized");
             echo("请输入正确的身份信息");
             exit;
