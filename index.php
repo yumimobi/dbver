@@ -1,4 +1,5 @@
 <?php
+setlocale(LC_CTYPE, "zh_CN.UTF-8");
 error_reporting(0);
 header("Content-type: text/html; charset=utf-8");
 define('ROOT_PATH', __DIR__.'/');
