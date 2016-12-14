@@ -15,8 +15,8 @@
         .glyphicon-calendar{font-size:18px;}
         .media-left{width:200px;}
         .media-body{width:1000px;}
-        .commit-row-info{width:840px;float:left;}
-        .dictionary{width:100px;float:right;line-height:15px;text-align:center;}
+        .commit-row-info{width:800px;float:left;}
+        .dictionary{width:140px;float:right;line-height:15px;text-align:center;}
         hr{margin:5px 0;}
     </style>
 </head>
@@ -51,7 +51,10 @@
                     <p class="text-muted"><a href="mailto:<?=$lastLog['email']?>?subject=Re<<?=$lastLog['id']?>>: <?=$lastLog['message']?>" class="text-success" title="<?=$log['email']?>"><?=$lastLog['name']?></a> 在 <?=getTimeFormatText($lastLog['dateline'])?> 调整</p>
                 </div>
                 <div class="dictionary">
-                    <p><a href="<?=U("Log", "diffLog", array('id'=>$lastLog['id']))?>">变更对比</a></p> 
+                    <p>
+                        <a href="<?=U("Log", "diffLog", array('id'=>$lastLog['id']))?>">变更对比</a>
+                        <a href="<?=U("Log", "rollback", array('id'=>$lastLog['id']))?>">回滚到</a>
+                    </p>
                     <p><a href="<?=U("Index", "dictionary", array('id'=>$lastLog['id']))?>">查看数据字典</a></p>
                 </div>
                 <?php endif; ?>
