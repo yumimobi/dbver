@@ -71,4 +71,25 @@ class Log extends Base
         $this->view->diffSql = $diffSql;
         $this->view->display('diff_log');
     }
+
+    public function rollback()
+    {
+        $git = Git::open(GIT_DATA_PATH);
+        $_GET['id'] || $_GET['id'] = 'master';
+        $databaseInfo = (array)json_decode($git->run("show {$_GET['id']}^:details.json"), true);
+        try{
+            $model = new \model\Analyze();
+            $currentDatabaseInfo = $model->getDatabaseInfo();
+        }catch (\Exception $e){
+            $currentDatabaseInfo = array();
+        }
+
+        $diffTool = new \model\DiffTool();
+        $diffFormat = $diffTool->diffFormat($currentDatabaseInfo, $databaseInfo);
+        $diffSql = $diffTool->diffSql($currentDatabaseInfo, $databaseInfo);
+
+        $this->view->diffFormat = $diffFormat;
+        $this->view->diffSql = $diffSql;
+        $this->view->display('diff_log');
+    }
 }
